@@ -22,13 +22,34 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('welcome_message');
 	}
-
-	 public function test($id, $hola = 'hola'){
-		echo "hola mundo desde test	";
+	/* Controladores */
+	// public function test($id, $hola = 'hola'){
+		//echo "hola mundo desde test	";
 		/*  url controlador/metodo/argumento(query strings) siemrep en ese orden
 		si usamos un ercer parametro podemos usarlo como parte de la funcion*/
-		echo $id;
-		echo $hola;
+		//echo $id;
+		//echo $hola;
 		/* se puede enviar muchos parametros */
-	} 
+	//} 
+	/* vistas */
+	public function vistas(){		
+		/* forma de cargar un view desde un controlador */
+		$this->load->view('vistas');
+		/* ademas se puden cargar vista simultaneaas como el header, el footer con vistas multiples */
+	
+		$this->load->view('footerV');
+		/* va en orden jerarquico entonces debemos mantener un orden la pagina */
+		/* pasar datos---------- */
+
+	}
+	public function vistas2(){		
+		/* pasar datos: */
+		$data['titulo'] = 'desde las vistas con datos';
+		$data['lista'] = array('negro','azul','blanco');
+		/* declarando datos */
+		$this->load->view('vistas',$data);
+		/* aqui enviamos los datos a la vista */
+		$this->load->view('footerV');
+		
+	}
 }

@@ -22,4 +22,13 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('welcome_message');
 	}
+
+	 public function test($id, $hola = 'hola'){
+		echo "hola mundo desde test	";
+		/*  url controlador/metodo/argumento(query strings) siemrep en ese orden
+		si usamos un ercer parametro podemos usarlo como parte de la funcion*/
+		echo $id;
+		echo $hola;
+		/* se puede enviar muchos parametros */
+	} 
 }

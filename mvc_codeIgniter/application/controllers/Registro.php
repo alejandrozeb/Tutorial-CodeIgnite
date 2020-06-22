@@ -9,12 +9,19 @@ class Registro extends CI_Controller {
         parent::__construct();
         $this->load->helper(array('getmenu'));
         /* tambien podemos cargar librerias y helpers */
+        /* cargar base de datos */
+        $this->load->database();
+        /* verificar las especificaciones */
     }
     /* ejemplo para registro */
 	public function index()
 	{
         $data['menu']=main_menu();
-		$this->load->view('registro',$data);
+        $this->load->view('registro',$data);
+        $query= $this ->db->get('usuarios');
+        var_dump($query->result());
+        /* extrae datos */
+        
     }
     /* formularios */
     /* recoger datos */

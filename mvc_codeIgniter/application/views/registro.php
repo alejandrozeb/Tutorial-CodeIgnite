@@ -38,12 +38,10 @@
 
         echo form_submit('submit','Enviar Datos');
         
-
-
-
-        echo form_open();
+        echo form_close();
     ?>
     <!-- crea el form en el documento -->
-
+    <?= isset($msg) ? $msg : '' ?>
+    <!-- verifica el registro de las migraciones -->
 </body>
 </html>

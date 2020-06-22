@@ -7,12 +7,29 @@ class Registro extends CI_Controller {
 	public function __construct(){
         /* doble barra __ */
         parent::__construct();
-        $this->load->helper(array('getmenu','url'));
+        $this->load->helper(array('getmenu'));
+        /* tambien podemos cargar librerias y helpers */
     }
     /* ejemplo para registro */
 	public function index()
 	{
         $data['menu']=main_menu();
 		$this->load->view('registro',$data);
-	}
+    }
+    /* formularios */
+    /* recoger datos */
+    /* crear usuario */
+    public function create(){
+        /* forma de recibir datos para post */
+        /* la libreria input ya viene cargada por defecto*/
+
+        $username = $this->input->post('username');
+        /* recogiendo los datos */
+        $email= $this->input->post('email');
+        $password = $this->input->post('password');
+        $password_c = $this->input->post('password_confirm');
+        var_dump($username . $email . $password . $password_c);
+        /* recibimos los datos y guardamos en variables */
+
+    }
 }

@@ -15,6 +15,35 @@
         </li>
         
     <?php endforeach; ?>
-    </ul>
+    </ul> 
+    <?php 
+        echo form_open('registro/create',array('method' => 'POST'));
+        /* podemos pasarle los datos donde iran(modal), ademas agregamos el metodo de envio */
+        echo form_label('Nombre de usuario:');
+        echo form_input('username');
+        echo "<br>";
+        echo "<br>";
+        echo form_label('Correo Electronico: ');
+        echo form_input(array('type' => 'email', 'name' => 'email'));
+        /* podemos especificar los datos d nuestras etiquetas */
+        echo "<br>";
+        echo "<br>";
+        echo form_label('Contraseña: ');
+        echo form_password('password');
+
+        echo "<br>";
+        echo "<br>";
+        echo form_label('Confirmación de contraseña: ');
+        echo form_password('password_confirm');
+
+        echo form_submit('submit','Enviar Datos');
+        
+
+
+
+        echo form_open();
+    ?>
+    <!-- crea el form en el documento -->
+
 </body>
 </html>

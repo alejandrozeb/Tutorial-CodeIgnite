@@ -17,6 +17,7 @@
         </div>
     </div>
        <header>
+       <?=validation_errors(); ?> <!-- mostrar los errores con la clase de form_validation -->
            <div class="container">
                <div class="row">
                    <div class="col-12">
@@ -25,6 +26,10 @@
                             <label for="exampleInputEmail1">Correo</label>
                             <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                             <small id="emailHelp" class="form-text text-muted">Ingrese su email</small>
+                            <!-- ayuda a mostrar los erroes -->
+                            <div class="invalid-feedback">
+                                El correo es vacio
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Contraseña</label>
@@ -40,14 +45,14 @@
 
         </header>
 
-    <ul>
-    <?php foreach($menu as $item): ?>
-        <li>
-            <a href="<?= $item['url'] ?>"><?= $item['title'] ?> </a>
+    <!-- <ul> -->
+    <?php //foreach($menu as $item): ?>
+        <!-- <li> -->
+            <!-- <a href="<?= $item['url'] ?>"><?= $item['title'] ?> </a> -->
             <!-- debemos usar el nombre de la variable que usamos en el helper -->
-        </li>
+        <!-- </li> -->
         
-    <?php endforeach; ?>
-    </ul>
+    <?php //endforeach; ?>
+    <!-- </ul> -->
 </body>
 </html>

@@ -13,19 +13,33 @@ class Login extends CI_Controller {
         /* se debe llamar a la clase padre */
 
         /* cargando helpers */
-        $this->load->helper(array('getmenu','url'));
+      //  $this->load->helper(array('getmenu','url'));
         /* al momento de llamarlo no es necesario usar el subfijo ( _helper ) */
         /* genera conflictos con uppercase se recomienda no usar */
+        $this->load->library('form_validation');
+        $this->load->helper(array('auth/login_rules'));
     }
 
     /* ya cargados podemos pasarselas a la vista */ 
 
 	public function index()
 	{
-        $data['menu']=main_menu();
+        //$data['menu']=main_menu(); ya no usamos 
         /* menu solo es una variable que queramos, main_menu es la clase */
         /* para traerlos debemos especifica el nombre */
-		$this->load->view('login',$data);
-	}
+        //$this->load->view('login',$data);
+        $this->load->view('login');
+        
+    }
+    
+    public function validate(){
+        $rules = getLoginRules();
+        $this->form_validation->set_rules($rules);
+        if($this->form_validation->run() === FALSE){
+            $this->load->view('login');
+        }else{
+            
+        }
+    }
 }
 

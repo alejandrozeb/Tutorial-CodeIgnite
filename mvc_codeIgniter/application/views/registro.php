@@ -15,7 +15,8 @@
         </li>
         
     <?php endforeach; ?>
-    </ul> 
+    </ul>
+    <?php echo validation_errors(); ?> 
     <?php 
         echo form_open('registro/create',array('method' => 'POST'));
         /* podemos pasarle los datos donde iran(modal), ademas agregamos el metodo de envio */

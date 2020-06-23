@@ -12,7 +12,10 @@ class Registro extends CI_Controller {
         /* cargar base de datos */
         //$this->load->database();
         /* verificar las especificaciones */
-        $a=$this->load->model('Users');
+        $this->load->model('Users');
+        /* cargamos el migrate */
+        $this->load->library(array('form_validation'));
+        /* cargo el formulario */
     }
     /* ejemplo para registro */
 	public function index()
@@ -40,21 +43,52 @@ class Registro extends CI_Controller {
         $password_c = $this->input->post('password_confirm');
        // var_dump($username . $email . $password . $password_c);
         /* recibimos los datos y guardamos en variables */
-        $datos=array(
-            'nombre_usuario' => $username,
-            'correo' => $email,
-            'contraseña' => $password,
-         );
-        /* cargamos el menu */
-        $data['menu'] = main_menu();
         
-        if(!$this->Users->create($datos)){
-            $data['msg']= 'ocurrio un error';
-            $this->load->view('registro',$data);
-        }
+        /* ----form valifdation------ */
+        $config = array(
+            array(
+                    'field' => 'username',
+                    'label' => 'Nombre de usuario',
+                    'rules' => 'required|alpha_numeric'
+            ),
+            array(
+                    'field' => 'email',
+                    'label' => 'correo',
+                    'rules' => 'required|valid_email',//agregamos mas reglas con |
+                    'errors' => array(
+                            'required' => 'El %s es invalido.',//%s es la eqtiqueta el nombre del atributo
+                    ),
+            ),
+            );
+    
+            $this->form_validation->set_rules($config);
+        
+            if ($this->form_validation->run() == FALSE)
+            {
+                    $data['menu'] = main_menu();
+                    $this->load->view('registro',$data);
+            }
+            else
+            {
+                   /* final form validation----- */
+                $datos=array(
+                    'nombre_usuario' => $username,
+                    'correo' => $email,
+                    'contraseña' => $password,
+                );
+                /* cargamos el menu */
+                $data['menu'] = main_menu();
+                
+                if(!$this->Users->create($datos)){
+                    $data['msg']= 'ocurrio un error';
+                    $this->load->view('registro',$data);
+                }
 
-        $data['msg']= 'Registrado correctamente: ';
-            $this->load->view('registro',$data);
+                $data['msg']= 'Registrado correctamente: ';
+                    $this->load->view('registro',$data);
+                            
+            }
+     
         
         
 

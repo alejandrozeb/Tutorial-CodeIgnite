@@ -21,7 +21,7 @@
            <div class="container">
                <div class="row">
                    <div class="col-12">
-                        <form action="<?= base_url('login/validate') ?>" method='POST'>
+                        <form action="<?= base_url('login/validate') ?>" method='POST' id="frm_login">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Correo</label>
                             <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -54,5 +54,8 @@
         
     <?php //endforeach; ?>
     <!-- </ul> -->
+<!-- para ajax -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src=" <?=base_url('assets/js/auth/login.js'); ?>"></script>
 </body>
 </html>

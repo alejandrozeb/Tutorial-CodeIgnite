@@ -1,5 +1,6 @@
-<!-- controlador para helpers, usaremos las vistas de login y registro de la carpeta views ademas de dos controladores Login.php (este) y registro.php -->
+
 <?php
+/* controlador para helpers, usaremos las vistas de login y registro de la carpeta views ademas de dos controladores Login.php este y registro.php */ 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
@@ -33,10 +34,15 @@ class Login extends CI_Controller {
     }
     
     public function validate(){
+        $this->form_validation->set_error_delimiters('','');
         $rules = getLoginRules();
         $this->form_validation->set_rules($rules);
         if($this->form_validation->run() === FALSE){
-            $this->load->view('login');
+            $erros = array(
+                'email' => form_error('email'), //trae el error del input de las vistas 
+                'password' => form_error('password')
+            );
+            echo json_encode($erros);
         }else{
             
         }

@@ -22,18 +22,22 @@
                <div class="row">
                    <div class="col-12">
                         <form action="<?= base_url('login/validate') ?>" method='POST' id="frm_login">
-                        <div class="form-group">
+                        <div class="form-group" id="email">
                             <label for="exampleInputEmail1">Correo</label>
                             <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                             <small id="emailHelp" class="form-text text-muted">Ingrese su email</small>
                             <!-- ayuda a mostrar los erroes -->
-                            <div class="invalid-feedback">
+                            <div class="invalid-feedback"> 
                                 El correo es vacio
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="password">
                             <label for="exampleInputPassword1">Contraseña</label>
                             <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+
+                            <div class="invalid-feedback"> 
+                                El password es vacio
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Ingresar</button>
                          </form>

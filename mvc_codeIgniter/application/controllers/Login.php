@@ -43,6 +43,7 @@ class Login extends CI_Controller {
                 'password' => form_error('password')
             );
             echo json_encode($erros);
+            $this->output->set_status_header(400);//error http
         }else{
             
         }

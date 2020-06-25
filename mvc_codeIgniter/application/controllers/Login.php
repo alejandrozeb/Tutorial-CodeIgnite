@@ -19,6 +19,8 @@ class Login extends CI_Controller {
         /* genera conflictos con uppercase se recomienda no usar */
         $this->load->library('form_validation');
         $this->load->helper(array('auth/login_rules'));
+        $this->load->model(array('Auth'));
+
     }
 
     /* ya cargados podemos pasarselas a la vista */ 
@@ -45,7 +47,14 @@ class Login extends CI_Controller {
             echo json_encode($erros);
             $this->output->set_status_header(400);//error http
         }else{
-            
+            $usr  = $this->input->post('email');
+            $pass = $this->input->post('password');
+            if (!$res = $this->Auth->login($usr,$pass)){
+              echo json_encode(array('msg' => 'Verifique sus credenciales'));
+               $this->output->set_status_header(401);
+               exit;//se sale
+            }
+            echo json_encode(array('msg' => 'bienvenido'));
         }
     }
 }
